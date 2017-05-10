@@ -3,12 +3,12 @@ const path = require('path');
 module.exports = {
     entry: "./app", //Point d'entrée du projet
     output: {
-        path: path.resolve(__dirname, "dist"),
+        path: path.resolve(__dirname, "app"),
         filename: "bundle.js"
     },
 
     devServer: {    //Serveur de développement
-        contentBase: path.join(__dirname, "dist"),
+        contentBase: path.join(__dirname, "app"),
         compress: true,
         port: 9000,
         historyApiFallback: true
@@ -16,19 +16,30 @@ module.exports = {
 
 	devtool: 'cheap-module-eval-source-map',    //permet de faire correspondre les source avec le bundle.js
 
-    module: {
+   module: {
         loaders: [
             {
-                test: /\.js$/,              //Quand on rencontre un fichier .js
-                exclude: /(node_modules)/,  //Qui n'est pas dans node_module
-                loader: 'babel-loader',     //on le passe à babel loader
+                test: /\.js$/,
+                exclude: /(node_modules)/,
+                loader: "babel-loader",
                 query: {
                     presets: [['env', { 
                         modules: false,
-                        targets: { browsers: ["last 2 versions"] }  //On prend les deux dernière version des navigateur
+                        targets: { browsers: ["last 2 versions"] }
                     }]]
                 }
-            }
+            },
+
+            {
+                test: /\.css$/,
+                loaders: ['style-loader', 'css-loader']
+            },
+            
+            {
+                test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+                loader: 'file-loader?name=fonts/[name].[ext]'
+            },
+
         ]
     }
 
