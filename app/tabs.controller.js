@@ -2,13 +2,11 @@ export class TabsController {
     constructor () {
         
         this.listOnglet=[
-            {title: "User", template: 'User'},
-            {title: "Application", template: 'Application'},
-            {title: "Parametrage", template: 'Parametrage'},
-            {title: "Blank", template: 'Blank'}
+            {title: "Burger", template: 'burger'},
+            {title: "Play", template: 'Application'}
         ]
 
-        this.tabIndex=1
+        this.tabIndex=0
     }
 
     changTab (tab) {

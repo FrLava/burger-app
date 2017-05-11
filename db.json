@@ -1,0 +1,21 @@
+{
+    "burgers": [
+        {
+                "id": 1,
+                "name": "Maxi B",
+                "toppings": ["steak", "salad"]
+            },
+
+            {
+                "id": 2,
+                "name": "Hot",
+                "toppings": ["steak", "tomate", "spicy sauce"]
+            },
+
+            {
+                "id": 3,
+                "name": "Vegan",
+                "toppings": ["soja steak", "salad", "onion"]
+            }
+    ]
+}

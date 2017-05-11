@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev:server": "webpack-dev-server --open",
+    "dev:api": "json-server db.json -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -19,10 +20,13 @@
     "standard": "^10.0.2",
     "style-loader": "^0.17.0",
     "webpack": "^2.5.1",
+    "json-server": "^0.10.0",
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
     "angular": "^1.6.4",
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "lodash": "^4.17.4",
+    "uuid": "^3.0.1"
   }
 }
