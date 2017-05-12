@@ -1,78 +1,23 @@
-import {uniq} from 'lodash'
-import angular from 'angular'
-import uuid from 'uuid'
+import { uniq } from 'lodash'
 
-export class BurgerController{
-    constructor(BurgerService){
-        this.burger=[]
-        this.burgerService=BurgerService.getBurgers()
-            .then(burger => this.burger=burger)
-        
-        console.log(this.burgerService)
-        this.newburger = this._initBurger()
+export class BurgerController {
+    
+    constructor(BurgerService, ToppingService, $routeParams, $location) {
+        this.BurgerService=BurgerService
+        this.ToppingService=ToppingService
+        this.$location=$location
 
-        this.col='name'
-        this.desc=false
+        this.ToppingService.getToppings()
+        .then(toppings => this.toppings = toppings)
 
-        this.listToppings=[]; 
-    }
-
-    getToppingsInBurger () {
-        if(!this.burger) return []
-        return uniq(this.burger
-        // {toppings} vaut la propriété toppings de burger
-        .reduce( (acc, {toppings} ) => [...acc, ...toppings], [] ) )
-
-    }
-
-    sortBy (col) {
-        if (this.col !== col) this.desc = false
-        else this.desc = !this.desc
-        this.col = col
-    }
-
-    applySort (burger) {
-        if(this.col==='name') return burger['name']
-        if(this.col==='topping') return burger.toppings.length
+        this.BurgerService.getBurger($routeParams.id)
+        .then(burger => this.burger = burger)
     }
 
     save (form) {
-
-        if(form.$invalid) return
-        
-        console.log(this.newburger.name)
-        if(!this.newburger.id){
-            this.newburger.id=uuid()
-            this.burger.push(angular.copy(this.newburger))
-            
-            
-        }
-        else{
-            
-            let idx = this.burger.findIndex(b => b.id === this.newburger.id)
-            if(idx!==-1){
-                this.burger[idx]=(angular.copy(this.newburger))
-            }
-        } 
-
-        this.newburger = this._initBurger()
-
-        form.$setUntouched()
+        if (form.$invalid) return
+        this.BurgerService.save(this.burger)
+        .then( () =>this.$location.path('../')) //quel que soit le résultat on redirige
     }
 
-    updateBurger (burger) {
-        this.newburger=burger;
-       
-    }
-
-    _initBurger () {
-        return {
-            id: null,
-            name: '',
-            toppings: [],
-            creator: ''
-        }
-  }
-    
-    
 }

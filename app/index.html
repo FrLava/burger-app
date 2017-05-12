@@ -5,11 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="bundle.js"></script>
+    <script src="/bundle.js"></script>
+    <base href="/">
 </head>
 <body ng-app="app">
+    <a href="/"> Burger </a>
+    <a href="/game"> Game </a>
+    <a href="/topping/3">3</a>
+    <a href="/topping/4">4</a>
 
-    <div class="container" ng-controller="TabsController as $tabs">
+    <div ng-view class="container"></div>
+
+    <!--<div class="container" ng-controller="TabsController as $tabs">
 
         <ul class="nav nav-tabs">
             <li ng-repeat="listOnglet in $tabs.listOnglet track by $index" 
@@ -32,16 +39,16 @@
                 <h1>{{listOnglet.title}}</h1>
             </div>
          
-        <!--<div ng-controller="UserController as $ctrl"> 
+        <div ng-controller="UserController as $ctrl"> 
             Bonjour {{$ctrl.completeName()}} </br>
         </div>
         <div ng-controller="InfoAppController as $infoApp">
             Mon application s'appelle <strong ng-if="false">{{$infoApp.name}}</strong> 
             et est en version <span ng-if="$infoApp.show">{{$infoApp.version}}</span>
             </br> <button class ="btn" ng-click="$infoApp.toggleVersion()" ng-click="clicked">Toggle Version</button>
-        </div>-->
+        </div>
 
-    </div>
+    </div>-->
 
 </body>
 </html>

@@ -1,68 +1,45 @@
-<div ng-controller="BurgerController as $burger">
+
+<h3 ng-if="!$burger.burger.id">Add a new burger</h3>
+<h3 ng-if="$burger.burger.id">Edit this burger</h3>
 
 <form name="burgerForm" novalidate ng-submit="$burger.save(burgerForm)">
+
     <div class="form-group">
         <label for="burgername">Burger name *</label>
-        <input required type="text" 
-               name="name" 
-               ng-model="$burger.newburger.name" 
-               ng-minlength="2" 
-               class="form-control">
-        <p ng-if="burgerForm.name.$error.required && burgerForm.name.$touched" 
-           class="text-danger"> Required !</p>
-        <p ng-if="burgerForm.name.$error.minlength && burgerForm.name.$touched" 
-           class="text-danger"> La taille doit être supérieur à 4</p>
+        <input type="text" 
+            id="burgername"
+            name="name"
+            required
+            ng-model="$burger.burger.name"
+            class="form-control">
+        <p ng-if="burgerForm.name.$error.required && burgerForm.name.$touched" class="text-danger">required !</p>
     </div>
 
     <div class="form-group">
-        <select ng-model="$burger.newburger.toppings" class="form-control" multiple='true'>
-            <option ng-repeat="toppings in $burger.getToppingsInBurger() track by $index"
-                            value="{{ toppings }}"> {{ toppings }} </option>
+        <label for="burgertoppings">Toppings</label>
+        <select
+            name="toppings" 
+            id="burgertoppings" 
+            multiple="true"
+            class="form-control"
+            ng-model="$burger.burger.toppings">
+                <option ng-value="topping.name" 
+                    ng-repeat="topping in $burger.toppings track by $index">
+                    {{ topping.name }}
+                </option>
         </select>
-
     </div>
 
-        <button type="submit" 
-                class="btn btn-primary" 
-                ng-disabled="burgerForm.$invalid"> save </button>
+    <div class="form-group">
+        <label for="burgercreator">Creator email</label>
+        <input type="email" 
+            name="creator"
+            id="burgercreator"
+            ng-model="$burger.burger.creator"
+            class="form-control">
+        <p ng-if="burgerForm.creator.$invalid" class="text-danger">email, morron</p>
+    </div>
+
+    <button type="submit" class="btn btn-primary" 
+        ng-disabled="burgerForm.$invalid">save</button>
 </form>
-
-<table class="table">
-    <thead>
-        <caption>Liste des burgers</caption>
-        <tr>
-            <th>
-                <a href ng-click="$burger.sortBy('name')" 
-                   ng-class="{ up:$burger.col==='name' && !$burger.desc, down:$burger.col==='name' && $burger.desc }"> Name </a>
-                <input type="text" ng-model="name" class="form-control" placeholder="search...">
-            </th>
-            <th>
-                <a href ng-click="$burger.sortBy('toppings')" 
-                   ng-class="{ up:$burger.col==='toppings' && !$burger.desc, down:$burger.col==='toppings' && $burger.desc }"> Toppings </a>
-                 
-                <select ng-model="toppings" class="form-control" >
-                    <option value=""></option>
-                    <option ng-repeat="toppings in $burger.getToppingsInBurger() track by $index"
-                            value="{{ toppings }}" > {{ toppings }}  </option>
-                </select>
-
-            </th>
-        </tr>
-    </thead>
-    <tbody >
-        <tr ng-repeat="burger in ($burger.burger 
-                       | filter:{name,toppings} 
-                       | orderBy:$burger.applySort.bind($burger):$burger.desc ) track by $index">
-            <td>
-                <a href ng-click="$burger.updateBurger(burger)"> {{ burger.name }} </a>
-            </td>
-            <td >
-                {{ burger.toppings.toString() }}
-            </td>
-        </tr>
-
-    </tbody>
-    <tfoot></tfoot>
-</table>
-
-</div>

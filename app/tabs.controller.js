@@ -3,7 +3,7 @@ export class TabsController {
         
         this.listOnglet=[
             {title: "Burger", template: 'burger'},
-            {title: "Play", template: 'Application'}
+            {title: "Play", template: 'game'}
         ]
 
         this.tabIndex=0

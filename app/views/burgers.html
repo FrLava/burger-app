@@ -1,0 +1,54 @@
+<div class="row">
+
+    <div class="col-sm-12">
+
+        <h3>Burgers list</h3>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 50%">
+                        <a ng-click="$burger.sortBy('name')" 
+                            href 
+                            class="sort"
+                            ng-class="{ up: $burger.col === 'name' && !$burger.desc, down: $burger.col === 'name' && $burger.desc }">Name</a>
+                        <input ng-model="name" type="text" class="form-control input-sm">
+                    </th>
+                    <th>
+                        <a ng-click="$burger.sortBy('toppings')" 
+                        href 
+                        class="sort"
+                            ng-class="{ up: $burger.col === 'toppings' && !$burger.desc, down: $burger.col === 'toppings' && $burger.desc }">Toppings</a>
+                        <select ng-model="toppings" class="form-control input-sm">
+                            <option value=""></option>
+                            <option ng-value="topping" 
+                                ng-repeat="topping in $burger.getToppings() track by $index">
+                                {{ topping }}
+                            </option>
+                        </select>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="burger in $burger.burgers 
+                | filter:{name,toppings} 
+                | orderBy:$burger.applySort.bind($burger):$burger.desc
+                track by $index">
+                    <td>
+                        <a ng-href="/burger/{{ burger.id }}">{{ burger.name }}</a>
+                    </td>
+                    <td>
+                        {{ burger.toppings.length }} : {{ burger.toppings.join(',') }}
+                    </td>
+                    <td>
+                        <button class="glyphicon glyphicon-trash " ng-click="$burger.deleteBurger(burger.id)"> Delete  </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button class="button"> <a ng-href="/burger"> Create New </a> </button>
+
+    </div>
+
+</div>
