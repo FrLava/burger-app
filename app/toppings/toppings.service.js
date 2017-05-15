@@ -28,6 +28,14 @@ export class ToppingService {
         .then(buildRandomRecipe(getRandomNbToppings(3, 6)))
     }
 
+    checkRecipe (burger, recipe) {
+        for (let i = 0; i < burger.length; i++) {
+            if (burger[i] !== recipe[i]) return 'INVALID'
+        }
+        if (burger.length === recipe.length) return 'VALID'
+        return 'RUNNING'
+    }
+
 }
 
 // PRIVATE

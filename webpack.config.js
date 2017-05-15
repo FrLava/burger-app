@@ -40,6 +40,12 @@ module.exports = {
                 loader: 'file-loader?name=fonts/[name].[ext]'
             },
 
+            {
+				test: /\.html$/,
+				exclude: [/node_modules/],
+				loader: 'raw-loader',
+			},
+
         ]
     }
 

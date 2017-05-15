@@ -1,0 +1,25 @@
+<div class="container">
+
+    <div class="row">
+        
+        <div class="col-sm-6">
+            
+            <dta-toppings 
+                toppings="$ctrl.toppings"
+                on-select="$ctrl.selectTopping($event)"></dta-toppings>
+
+            <dta-recipe
+                toppings="$ctrl.recipe"></dta-recipe>
+
+        </div>
+
+        <div class="col-sm-6">
+            
+            <dta-burger
+                toppings="$ctrl.burger"></dta-burger>
+
+        </div>
+
+    </div>
+
+</div>

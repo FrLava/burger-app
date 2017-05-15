@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/bundle.js"></script>
+    <base href="/">
+</head>
+<body ng-app="app">
+
+    <dta-game>
+        <dta-toppings></dta-toppings>
+    </dta-game>
+
+    <!--<div ng-controller="MyController as $ctrl">
+
+        <dta-gravatar email="$ctrl.thomas" on-talk="$ctrl.talk($event)">
+            
+        </dta-gravatar>
+    </div>-->
+    <!--<a href="/game"> Game </a>
+
+
+    <div ng-view class="container"></div>-->
+
+    <!--<div class="container" ng-controller="TabsController as $tabs">
+
+        <ul class="nav nav-tabs">
+            <li ng-repeat="listOnglet in $tabs.listOnglet track by $index" 
+                ng-class="{'active' : $tabs.tabIndex===$index}"> 
+
+            <a ng-click="$tabs.changTab($index)" href> {{listOnglet.title}} </a> </li>
+
+            <li class="pull-right">
+                <button class="btn" ng-click="$tabs.tabNav(-1)">&lt;</button>
+                <button class="btn" ng-click="$tabs.tabNav(+1)">&gt;</button>
+            </li>
+
+            
+            
+        </ul>
+       
+       <div ng-repeat="listOnglet in $tabs.listOnglet track by $index" 
+            ng-if="$tabs.tabIndex===$index" 
+            ng-include src="$tabs.getTemplate($index)">
+                <h1>{{listOnglet.title}}</h1>
+            </div>
+         
+        <div ng-controller="UserController as $ctrl"> 
+            Bonjour {{$ctrl.completeName()}} </br>
+        </div>
+        <div ng-controller="InfoAppController as $infoApp">
+            Mon application s'appelle <strong ng-if="false">{{$infoApp.name}}</strong> 
+            et est en version <span ng-if="$infoApp.show">{{$infoApp.version}}</span>
+            </br> <button class ="btn" ng-click="$infoApp.toggleVersion()" ng-click="clicked">Toggle Version</button>
+        </div>
+
+    </div>-->
+
+</body>
+</html>
