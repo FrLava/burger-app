@@ -1,3 +1,5 @@
+<h2>Recipe </h2>
+
 <ul class="list-group">
   <li 
     class="list-group-item" 
@@ -5,3 +7,8 @@
     {{ topping }}
   </li>
 </ul>
+
+<dta-countdown
+  on-end="$ctrl.end()"
+  on-start="$ctrl.start($event)"
+  time="$ctrl.time"></dta-countdown>

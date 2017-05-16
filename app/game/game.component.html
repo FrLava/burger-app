@@ -4,12 +4,16 @@
         
         <div class="col-sm-6">
             
+            <h2> Liste des Toppings </h2>
+
             <dta-toppings 
                 toppings="$ctrl.toppings"
                 on-select="$ctrl.selectTopping($event)"></dta-toppings>
 
             <dta-recipe
-                toppings="$ctrl.recipe"></dta-recipe>
+                toppings="$ctrl.recipe" on-timeout="$ctrl.gameover()" time="$ctrl.time"></dta-recipe>
+
+            <div> <h2> Score: {{ $ctrl.score }} </h2> </div>
 
         </div>
 

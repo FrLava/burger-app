@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "cross-env NODE_ENV=prod webpack",
     "dev:server": "webpack-dev-server --open",
     "dev:api": "json-server db.json -w",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,6 +16,7 @@
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
     "babel-preset-env": "^1.4.0",
+    "cross-env": "^5.0.0",
     "css-loader": "^0.28.1",
     "file-loader": "^0.11.1",
     "json-server": "^0.10.0",

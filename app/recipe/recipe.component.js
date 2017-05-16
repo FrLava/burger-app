@@ -2,29 +2,28 @@ import template from './recipe.component.html'
 
 class controller {
 
-    constructor ($interval) {
-        this.$interval = $interval
+    constructor ($timeout) {
+        this.$timeout = $timeout
+        //this.flag = false
     }
 
     $onChanges (changes) {
         if (changes.toppings && changes.toppings.currentValue) {
             // on retourne le tableau (cloné) avant de l'afficher
             this.toppings = angular.copy(this.toppings).reverse();
-            // nouvelle recette === nouveau compteur
-            if(this.interval){
-                this.cpt = 10
-                this.interval = this.$interval(() => {
-                    this.cpt--
-                    console.log(this.cpt)
-                    if (this.cpt === 0) {
-                        this.$interval.cancel(this.interval)
-                        console.log('perdu')
-                    }
-                }, 1000)
-
-            }
-            
+            // reset timer
+            //this.flag = !this.flag
+            this.time = { value: 15 } 
         }
+    }
+
+    end () {
+        this.onTimeout()
+        console.log('end')
+    }
+
+    start (remain) {
+        console.log(remain)
     }
 
 }
@@ -33,6 +32,8 @@ export let RecipeComponent = {
     controller,
     template,
     bindings: {
-        toppings: '<'
+        toppings: '<',
+        onTimeout: '&',
+        time: '<'
     }
 }
